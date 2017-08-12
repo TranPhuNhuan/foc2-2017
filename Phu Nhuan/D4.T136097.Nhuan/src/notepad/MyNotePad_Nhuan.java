@@ -2,7 +2,7 @@
  * 
  */
 package notepad;
-
+import java.util.Scanner;
 /**
  * @author US
  *
