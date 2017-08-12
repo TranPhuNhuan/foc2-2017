@@ -16,7 +16,9 @@ public class ArrayRandom_Nhuan {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-			Scanner input = new Scanner(System.in);
+			
+		
+		Scanner input = new Scanner(System.in);
 			Random rd = new Random();
 			int n = 0;
 			int tg;

@@ -13,6 +13,9 @@ public class ArraySearch_Nhuan {
 	/**
 	 * @param args
 	 */
+	
+	
+	
 	public static int[] Num = new int[100];
 	public static Random rn = new Random();
 
