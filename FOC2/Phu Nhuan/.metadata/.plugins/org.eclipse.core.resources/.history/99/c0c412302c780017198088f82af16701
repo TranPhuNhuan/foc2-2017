@@ -1,0 +1,95 @@
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JCheckBox;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import java.awt.Font;
+import javax.swing.JPasswordField;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+
+public class  Ex1_T136097_Nhuan extends JFrame{
+	//file - Instance Variable
+	JLabel lblUsername;
+	JTextField txtUsername;
+	private JTextField textField;
+	private JPasswordField txtPassword;
+	
+	//hàm dựng - Constructor
+	public Ex1_T136097_Nhuan(){
+		getContentPane().setBackground(Color.WHITE);
+		getContentPane().setLayout(null);
+		lblUsername = new JLabel("Username");
+		lblUsername.setLocation(30, 50);
+		lblUsername.setSize(80,25);
+		getContentPane().add(lblUsername);
+		txtUsername = new JTextField();
+		lblUsername.setLocation(30, 80);
+		lblUsername.setSize(150,25);
+		getContentPane().add(txtUsername);
+		
+		textField = new JTextField();
+		textField.addFocusListener(new FocusAdapter() {
+			
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				txtUsername.setBackground(new Color(0, 51, 0, 100));
+			}
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				txtUsername.setBackground(Color.white);
+			}
+		});
+		textField.setBounds(30, 116, 124, 20);
+		getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setBounds(30, 147, 46, 14);
+		getContentPane().add(lblPassword);
+		
+		
+		JCheckBox chckbxRememberMe = new JCheckBox("Remember Me");
+		chckbxRememberMe.setBounds(30, 210, 97, 23);
+		getContentPane().add(chckbxRememberMe);
+		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String userName = txtUsername.getText();
+				char[] passArray = txtPassword.getPassword();
+				String password = new String(passArray);
+				if(userName.equals("admin")&& password.equals("root")){
+					JOptionPane.showMessageDialog(Ex1_T136097_Nhuan.this, "Hello"+ userName);
+				}
+				else{
+					JOptionPane.showMessageDialog(Ex1_T136097_Nhuan.this, "False:(");
+				}
+			}
+		});
+		btnLogin.setBounds(69, 269, 89, 23);
+		getContentPane().add(btnLogin);
+		
+		JLabel lblLogin = new JLabel("LOGIN");
+		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		lblLogin.setBounds(69, 0, 138, 76);
+		getContentPane().add(lblLogin);
+		
+		txtPassword = new JPasswordField();
+		txtPassword.setBounds(30, 172, 124, 20);
+		getContentPane().add(txtPassword);
+	}
+	public static void main(String[] arg ){
+		Ex1_T136097_Nhuan gui = new Ex1_T136097_Nhuan();
+		gui.setVisible(true);
+		gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		gui.setSize(500, 400);
+	}
+}
