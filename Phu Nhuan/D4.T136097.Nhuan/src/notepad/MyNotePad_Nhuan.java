@@ -40,12 +40,11 @@ public class MyNotePad_Nhuan extends JFrame {
 	JScrollPane scrPane;
 
 	public MyNotePad_Nhuan() {
-		setTitle("Text Editor");
+		setTitle("MyNotePad");
 		setPreferredSize(new Dimension(600, 500));
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		pack();
 		setLocationRelativeTo(null);
-		initializeMenu();
 		txaContent = new JTextArea();
 		scrPane = new JScrollPane(txaContent);
 		getContentPane().add(scrPane);
@@ -68,7 +67,7 @@ public class MyNotePad_Nhuan extends JFrame {
 					changeFontColor();
 				}
 				else if (e.getSource()==mniAnalyze){
-					changeFontColor();
+					closeApplication();
 					String[] lines = textArea.getText().split("\r\n");
 					for(int i=1; i<lines.length; i++){
 						//System.out.println(lines[i]);
@@ -132,10 +131,29 @@ public class MyNotePad_Nhuan extends JFrame {
 		
 		setJMenuBar(mnbBar);
 	}
-	public static void main(String[] args) {
+	public void openFile(){
+		JFileChooser fchOpenFile = new JFileChooser();
+		int result = fchOpenFile.showOpenDialog(this);
+		if(result == JFileChooser.APPROVE_OPTION){
+			try{
+				Scanner scn = new Scanner(fchOpenFile.getSelectedFile());
+				while(scn.hasNextLine()){
+					txaContent.append(scn.nextLine() + "\n");
+				}
+				scn.close();
+			}
+			catch (FileNotFoundException e) {
+				// TODO: handle exception
+				JOptionPane.showMessageDialog(null, "Selected file not found");
+			}
+		}
+	}
+	
+	public static void main(String[] args ) {
 		// TODO Auto-generated method stub
 		MyNotePad_Nhuan f = new MyNotePad_Nhuan();
 		f.setVisible(true);
 	}
 
+}
 }
