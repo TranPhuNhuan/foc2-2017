@@ -12,18 +12,7 @@ import dataobject.Brand;
 import dataobject.Category;
 import dataobject.UnitOfMeasure;
 
-public class SQLiteDB {
-	private Connection connect() {
-		String url = "jdbc:sqlite:foc2warehouse.db";
-		Connection conn = null;
-		try {
-			conn = DriverManager.getConnection(url);
-			}
-		catch (SQLException e){
-			System.out.println(e.getMessage());
-		}
-		return conn;
-	}
+public class SQLiteDB extends WHConnection{
 	
 	public void getAllProducts(){
 		String sql = "SELECT * FROM products";
@@ -33,8 +22,8 @@ public class SQLiteDB {
 				ResultSet rs = stmt.executeQuery(sql)) {
 			while (rs.next()) {
 				
-				System.out.format("%3d %-40s %6.2f %4d \n", 
-						rs.getInt("productid"),
+				System.out.format("%3s %-40s %6.2f %4d \n", 
+						rs.getString("productid"),
 						rs.getString("productname"),
 						rs.getDouble("unitprice"),
 						rs.getInt("unitinstock"));
