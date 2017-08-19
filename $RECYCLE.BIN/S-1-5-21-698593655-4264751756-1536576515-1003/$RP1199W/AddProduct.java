@@ -93,7 +93,7 @@ public class AddProduct extends JFrame implements ActionListener {
 		txtName.setColumns(10);
 		
 		JLabel lblCategory = new JLabel("Category");
-		lblCategory.setBounds(25, 133, 102, 14);
+		lblCategory.setBounds(25, 133, 74, 14);
 		contentPane.add(lblCategory);
 		
 		JLabel lblUnitPrice = new JLabel("Unit Price");
@@ -106,7 +106,7 @@ public class AddProduct extends JFrame implements ActionListener {
 		contentPane.add(txtUnitPrice);
 		
 		JLabel lbProductCode = new JLabel("Product Code");
-		lbProductCode.setBounds(25, 71, 102, 14);
+		lbProductCode.setBounds(25, 71, 74, 14);
 		contentPane.add(lbProductCode);
 		
 		txtProductCode = new JTextField();

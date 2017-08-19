@@ -35,9 +35,9 @@ public class AddProduct extends JFrame implements ActionListener {
 	private JTextField txtProductCode;
 	
 	private ProductDA productDA;
-	private CategoryDA catDA;
+	private CategoryDA categoryDA;
 	private BrandDA brandDA;
-	private UnitOfMeasureDA unitDA;
+	private UnitOfMeasureDA unitofmeasureDA;
 	
 	private JButton btnAdd;
 	private JButton btnCancel;
@@ -66,9 +66,9 @@ public class AddProduct extends JFrame implements ActionListener {
 	 */
 	public AddProduct() {
 		productDA = new ProductDA();
-		catDA = new CategoryDA();
+		categoryDA = new CategoryDA();
 		brandDA = new BrandDA();
-		unitDA = new UnitOfMeasureDA();
+		unitofmeasureDA = new UnitOfMeasureDA();
 		
 		initGUI();
 	}
@@ -93,7 +93,7 @@ public class AddProduct extends JFrame implements ActionListener {
 		txtName.setColumns(10);
 		
 		JLabel lblCategory = new JLabel("Category");
-		lblCategory.setBounds(25, 133, 102, 14);
+		lblCategory.setBounds(25, 133, 74, 14);
 		contentPane.add(lblCategory);
 		
 		JLabel lblUnitPrice = new JLabel("Unit Price");
@@ -106,7 +106,7 @@ public class AddProduct extends JFrame implements ActionListener {
 		contentPane.add(txtUnitPrice);
 		
 		JLabel lbProductCode = new JLabel("Product Code");
-		lbProductCode.setBounds(25, 71, 102, 14);
+		lbProductCode.setBounds(25, 71, 74, 14);
 		contentPane.add(lbProductCode);
 		
 		txtProductCode = new JTextField();
@@ -131,7 +131,7 @@ public class AddProduct extends JFrame implements ActionListener {
 		btnCancel.addActionListener(this);
 		
 		cmbCategory = new JComboBox<Category>();
-		Vector<Category> catList = catDA.getCategories();
+		Vector<Category> catList = categoryDA.getCategories();
 		cmbCategory.setModel(new DefaultComboBoxModel<Category>(catList));
 		cmbCategory.setBounds(137, 130, 173, 20);
 		contentPane.add(cmbCategory);
@@ -141,7 +141,7 @@ public class AddProduct extends JFrame implements ActionListener {
 		contentPane.add(lblUnitOfMeasre);
 		
 		cmbUnit = new JComboBox<UnitOfMeasure>();
-		Vector<UnitOfMeasure>unitList = unitDA.getUnitOfMeasure();
+		Vector<UnitOfMeasure>unitList = unitofmeasureDA.getUnitOfMeasure();
 		cmbUnit.setModel(new DefaultComboBoxModel<UnitOfMeasure>(unitList));
 		cmbUnit.setBounds(137, 161, 173, 20);
 		contentPane.add(cmbUnit);

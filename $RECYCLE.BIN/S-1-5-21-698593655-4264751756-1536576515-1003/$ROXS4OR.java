@@ -10,9 +10,11 @@ public class WHConnection {
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url);
-		} catch (SQLException e) {
+			}
+		catch (SQLException e){
 			System.out.println(e.getMessage());
 		}
 		return conn;
 	}
+
 }

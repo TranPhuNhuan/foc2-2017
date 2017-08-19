@@ -3,16 +3,6 @@ package dataobject;
 public class UnitOfMeasure {
 	private int id;
 	private String name;
-	
-	public UnitOfMeasure(int id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
-	@Override
-	public String toString() {
-		return name;
-	}
 	public int getId() {
 		return id;
 	}
@@ -23,6 +13,15 @@ public class UnitOfMeasure {
 		return name;
 	}
 	public void setName(String name) {
+		this.name = name;
+	}
+	@Override
+	public String toString() {
+		return name;
+	}
+	public UnitOfMeasure(int id, String name) {
+		super();
+		this.id = id;
 		this.name = name;
 	}
 	

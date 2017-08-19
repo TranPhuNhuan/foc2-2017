@@ -1,34 +1,34 @@
 package da;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
-import dataobject.Brand;
 import dataobject.UnitOfMeasure;
 
-public class UnitOfMeasureDA extends WHConnection {
+public class UnitOfMeasureDA extends WHConnection{
 	
-	public Vector<UnitOfMeasure> getUnitOfMeasure() {
+	public Vector<UnitOfMeasure> getAllUnitofmeasure(){
 		String sql = "SELECT * FROM unitofmeasure";
-		Vector<UnitOfMeasure> unitList = new Vector<>();
+		Vector<UnitOfMeasure> unitofmeasureList = new Vector<>();
 		try (Connection conn = connect();
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql)) {
-
-			// loop through the result set
 			while (rs.next()) {
-				UnitOfMeasure unit = new UnitOfMeasure(rs.getInt("id"),
-						rs.getString("unitname"));
-				unitList.add(unit);
+				
+				UnitOfMeasure uni = new UnitOfMeasure(rs.getInt("id"), rs.getString("unitname"));
+				unitofmeasureList.add(uni);
+				
+				
 			}
-			return unitList;
+			return unitofmeasureList;
 		} catch (SQLException e) {
+			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}
-		return unitList;
+		return null;
 	}
+
 }
