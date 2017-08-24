@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.Caret;
 
 import da.BrandDA;
 import da.CategoryDA;
@@ -83,7 +84,8 @@ public class AddCategory extends JFrame implements ActionListener {
 		contentPane.setLayout(null);
 		
 		JLabel lblName = new JLabel("Category Name");
-		lblName.setBounds(22, 105, 89, 14);
+		lblName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblName.setBounds(21, 99, 103, 23);
 		contentPane.add(lblName);
 		
 		txtName = new JTextField();
@@ -92,6 +94,7 @@ public class AddCategory extends JFrame implements ActionListener {
 		txtName.setColumns(10);
 		
 		JLabel lbDescription = new JLabel("Description");
+		lbDescription.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lbDescription.setBounds(22, 166, 74, 14);
 		contentPane.add(lbDescription);
 		
@@ -115,16 +118,16 @@ public class AddCategory extends JFrame implements ActionListener {
 		btnCancel.setBounds(179, 243, 89, 23);
 		contentPane.add(btnCancel);
 		btnCancel.addActionListener(this);
-		Vector<Category> catList = catDA.getAllCategories();
-		Vector<UnitOfMeasure>unitList = unitDA.getUnitOfMeasure();
-		Vector<Brand> brandList = brandDA.getBrands();
+		//Vector<Category> catList = catDA.getAllCategories();
+		//Vector<UnitOfMeasure>unitList = unitDA.getUnitOfMeasure();
+		//Vector<Brand> brandList = brandDA.getBrands();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnAdd){
-			addProduct();
-			productDA.getAllProducts();
+			addCategory();
+			catDA.getAllCategories();
 			JOptionPane.showMessageDialog(this,"add completed");
 			
 			CategoryList frame1 = new CategoryList();
@@ -136,17 +139,9 @@ public class AddCategory extends JFrame implements ActionListener {
 		
 	}
 
-	private void addProduct() {
-		String productCode = txtDescription.getText();
-		String productName = txtName.getText();
-		//double unitPrice = Double.parseDouble(txtUnitPrice.getText());
-		//Category selectedCat = (Category)cmbCategory.getSelectedItem();
-		//Brand selectedBrand = (Brand)cmbBrand.getSelectedItem();
-		//UnitOfMeasure selectedUnit = (UnitOfMeasure)cmbUnit.getSelectedItem();
-		//int catId = selectedCat.getCategoryId();
-		//int brandId = selectedBrand.getId();
-		//int unitId = selectedUnit.getId();
-		
-		//productDA.insert(productCode, productName, catId, brandId, unitId, unitPrice, "");
+	private void addCategory() {
+		String categoryName = txtName.getText();
+		String categoryDescription = txtDescription.getText();
+		catDA.insert(categoryName, categoryDescription);
 	}
 }

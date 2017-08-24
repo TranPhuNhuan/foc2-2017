@@ -103,8 +103,8 @@ public class CategoryList extends JFrame implements ActionListener{
 		
 		int selectedRowIndex = tableCategory.getSelectedRow();
 		if(selectedRowIndex != -1){ 
-			int selectedCateID = (int) tableCategory.getModel().getValueAt(selectedRowIndex, 0);
-			UpdateProduct updateGUI = new UpdateProduct(selectedCateID);
+			int selectedcatID = (int) tableCategory.getModel().getValueAt(selectedRowIndex, 0);
+			UpdateCategory updateGUI = new UpdateCategory(selectedcatID);
 			updateGUI.setVisible(true);
 			CategoryList.this.dispose();
 			

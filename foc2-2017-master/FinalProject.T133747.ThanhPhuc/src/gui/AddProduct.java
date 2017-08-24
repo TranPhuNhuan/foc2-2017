@@ -188,5 +188,6 @@ public class AddProduct extends JFrame implements ActionListener {
 		int unitId = selectedUnit.getId();
 		
 		productDA.insert(productCode, productName, catId, brandId, unitId, unitPrice, "");
+		
 	}
 }
