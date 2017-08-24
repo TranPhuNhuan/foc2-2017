@@ -26,6 +26,7 @@ import dataobject.Category;
 import dataobject.Product;
 import dataobject.UnitOfMeasure;
 
+@SuppressWarnings("unused")
 public class UpdateProduct extends JFrame implements ActionListener {
 
 	/**
@@ -34,8 +35,8 @@ public class UpdateProduct extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtName;
-	private JTextField txtUnitPrice;
-	private JTextField txtProductCode;
+	private JTextField txtUnitprice;
+	private JTextField txtProductcode;
 	
 	private ProductDA productDA;
 	private CategoryDA catDA;
@@ -45,7 +46,7 @@ public class UpdateProduct extends JFrame implements ActionListener {
 	private JButton btnUpdate;
 	private JButton btnCancel;
 	private JComboBox<Category> cmbCategory;
-	private JComboBox<UnitOfMeasure> cmbUnit;
+	private JComboBox<UnitOfMeasure> cmbUnitofmeasure;
 	private JComboBox<Brand> cmbBrand;
 
 	public int productID = 1;
@@ -82,9 +83,9 @@ public class UpdateProduct extends JFrame implements ActionListener {
 		
 		
 		Product p = productDA.getProduct(productID );
-		txtProductCode.setText(p.getProductCode());
+		txtProductcode.setText(p.getProductCode());
 		txtName.setText(p.getProductName());
-		txtUnitPrice.setText(p.getUnitPrice()+"");
+		txtUnitprice.setText(p.getUnitPrice()+"");
 		cmbCategory.setSelectedIndex(1);
 		
 	}
@@ -116,25 +117,25 @@ public class UpdateProduct extends JFrame implements ActionListener {
 		lblUnitPrice.setBounds(25, 222, 74, 14);
 		contentPane.add(lblUnitPrice);
 		
-		txtUnitPrice = new JTextField();
-		txtUnitPrice.setColumns(10);
-		txtUnitPrice.setBounds(137, 219, 173, 20);
-		contentPane.add(txtUnitPrice);
+		txtUnitprice = new JTextField();
+		txtUnitprice.setColumns(10);
+		txtUnitprice.setBounds(137, 219, 173, 20);
+		contentPane.add(txtUnitprice);
 		
 		JLabel lbProductCode = new JLabel("Product Code");
 		lbProductCode.setBounds(25, 71, 89, 14);
 		contentPane.add(lbProductCode);
 		
-		txtProductCode = new JTextField();
-		txtProductCode.setColumns(10);
-		txtProductCode.setBounds(137, 68, 173, 20);
-		contentPane.add(txtProductCode);
+		txtProductcode = new JTextField();
+		txtProductcode.setColumns(10);
+		txtProductcode.setBounds(137, 68, 173, 20);
+		contentPane.add(txtProductcode);
 		
-		JLabel lblAddProduct = new JLabel("Update Product");
-		lblAddProduct.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAddProduct.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblAddProduct.setBounds(39, 27, 229, 14);
-		contentPane.add(lblAddProduct);
+		JLabel lblUpdateProduct = new JLabel("Update Product");
+		lblUpdateProduct.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUpdateProduct.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblUpdateProduct.setBounds(39, 27, 229, 14);
+		contentPane.add(lblUpdateProduct);
 		
 		btnUpdate = new JButton("Update");
 		btnUpdate.setBounds(61, 272, 89, 23);
@@ -156,11 +157,11 @@ public class UpdateProduct extends JFrame implements ActionListener {
 		lblUnitOfMeasre.setBounds(25, 164, 102, 14);
 		contentPane.add(lblUnitOfMeasre);
 		
-		cmbUnit = new JComboBox<UnitOfMeasure>();
+		cmbUnitofmeasure = new JComboBox<UnitOfMeasure>();
 		Vector<UnitOfMeasure>unitList = unitDA.getUnitOfMeasure();
-		cmbUnit.setModel(new DefaultComboBoxModel<UnitOfMeasure>(unitList));
-		cmbUnit.setBounds(137, 161, 173, 20);
-		contentPane.add(cmbUnit);
+		cmbUnitofmeasure.setModel(new DefaultComboBoxModel<UnitOfMeasure>(unitList));
+		cmbUnitofmeasure.setBounds(137, 161, 173, 20);
+		contentPane.add(cmbUnitofmeasure);
 		
 		JLabel lblBrand = new JLabel("Brand");
 		lblBrand.setBounds(25, 192, 74, 14);
@@ -189,14 +190,14 @@ public class UpdateProduct extends JFrame implements ActionListener {
 	}
 
 	private void updateProduct() {
-		String productCode = txtProductCode.getText();
+		String productCode = txtProductcode.getText();
 		String productName = txtName.getText();
-		double unitPrice = Double.parseDouble(txtUnitPrice.getText());
+		double unitPrice = Double.parseDouble(txtUnitprice.getText());
 		Category selectedCat = (Category)cmbCategory.getSelectedItem();
 		Brand selectedBrand = (Brand)cmbBrand.getSelectedItem();
-		UnitOfMeasure selectedUnit = (UnitOfMeasure)cmbUnit.getSelectedItem();
+		UnitOfMeasure selectedUnit = (UnitOfMeasure)cmbUnitofmeasure.getSelectedItem();
 		int catId = selectedCat.getCategoryId();
-		int brandId = selectedBrand.getId();
+		int brandId = selectedBrand.getBrandId();
 		int unitId = selectedUnit.getId();
 		
 		productDA.update(productCode, productName, catId, brandId, unitId, unitPrice, productID);

@@ -7,6 +7,7 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -16,16 +17,20 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import da.BrandDA;
+import da.CategoryDA;
 import da.ProductDA;
+import dataobject.Category;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
 @SuppressWarnings({ "unused", "serial" })
-public class ProductList extends JFrame implements ActionListener{
+public class BrandList extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
-	private JTable tableProduct;
-	ProductDA productDA;
+	private JTable tableCategory;
+	CategoryDA categoryDA;
 	private JPanel panelTop;
 	private JButton btnUpdate;
 	private JButton btnAdd;
@@ -37,7 +42,7 @@ public class ProductList extends JFrame implements ActionListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ProductList frame = new ProductList();
+					BrandList frame = new BrandList();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,8 +54,8 @@ public class ProductList extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public ProductList() {
-		setTitle("Product Management");
+	public BrandList() {
+		setTitle("Brand Management");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -60,9 +65,9 @@ public class ProductList extends JFrame implements ActionListener{
 		
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
-		tableProduct = new JTable();
-		getProductList();
-		scrollPane.setViewportView(tableProduct);
+		tableBrand = new JTable();
+		getBrandList();
+		scrollPane.setViewportView(tableBrand);
 		
 		panelTop = new JPanel();
 		panelTop.setPreferredSize(new Dimension(200, 30));
@@ -80,39 +85,39 @@ public class ProductList extends JFrame implements ActionListener{
 		panelTop.add(btnUpdate);
 	}
 
-	private void getProductList() {
-		productDA = new ProductDA();
-		DefaultTableModel model = productDA.getProducts();
-		tableProduct.setModel(model);
+	private void getBrandList() {
+		brandDA = new BrandDA();
+		DefaultTableModel model = brandDA.getBrands1();
+		tableBrand.setModel(model);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnAdd){
-			addProduct();
+			addBrand();
 		}else if(e.getSource() == btnUpdate){
-			updateProduct();
+			updateBrand();
 		}
 		
 	}
 
-	private void updateProduct() {
+	private void updateBrand() {
 		
-		int selectedRowIndex = tableProduct.getSelectedRow();
+		int selectedRowIndex = tableBrand.getSelectedRow();
 		if(selectedRowIndex != -1){ 
-			int selectedProductID = (int) tableProduct.getModel().getValueAt(selectedRowIndex, 0);
-			UpdateProduct updateGUI = new UpdateProduct(selectedProductID);
+			int selectedbrandID = (int) tableBrand.getModel().getValueAt(selectedRowIndex, 0);
+			UpdateBrand updateGUI = new UpdateBrand(selectedbrandID);
 			updateGUI.setVisible(true);
-			ProductList.this.dispose();
+			BrandList.this.dispose();
 			
 		}
 				
 	}
 
-	private void addProduct() {
-		AddProduct addGui = new AddProduct();
+	private void addBrand() {
+		AddBrand addGui = new AddBrand();
 		addGui.setVisible(true);
-		ProductList.this.dispose();
+		BrandList.this.dispose();
 		
 	}
 }

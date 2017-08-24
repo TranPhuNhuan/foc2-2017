@@ -1,31 +1,42 @@
 package dataobject;
 
 public class Brand {
-	private int id;
-	private String name;
+	private int brandId;
+	private String brandName;
+	private String brandDescription;
 	
-	public Brand(){}
-	public Brand(int id, String name) {
+	public Brand(){};
+	
+	public Brand(int brandId, String brandName, String brandDescription) {
 		super();
-		this.id = id;
-		this.name = name;
+		this.brandId = brandId;
+		this.brandName = brandName;
+		this.brandDescription = brandDescription;
 	}
+	public String getBrandDescription() {
+		return brandDescription;
+	}
+	public void setBrandDescription(String brandDescription) {
+		this.brandDescription = brandDescription;
+	}
+	public int getBrandId() {
+		return brandId;
+	}
+	public void setBrandId(int string) {
+		this.brandId = string;
+	}
+	public String getBrandName() {
+		return brandName;
+	}
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
+
 	@Override
 	public String toString() {
-		return name;
+		return brandName + brandDescription ;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	
 
+	
+	
 }

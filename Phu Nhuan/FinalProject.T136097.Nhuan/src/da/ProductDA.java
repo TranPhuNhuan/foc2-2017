@@ -55,8 +55,8 @@ public class ProductDA extends WHConnection {
 				cat.setCategoryName(rs.getString("categoryname"));
 				product.setCategory(cat);
 				Brand brand = new Brand();
-				brand.setId(rs.getInt("brandid"));
-				brand.setName(rs.getString("brandname"));
+				brand.setBrandId(rs.getInt("brandid"));
+				brand.setBrandName(rs.getString("brandname"));
 				product.setBrand(brand);
 				UnitOfMeasure unit = new UnitOfMeasure();
 				unit.setId(rs.getInt("unitofmeasureid"));

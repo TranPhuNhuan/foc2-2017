@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 import dataobject.Category;
 
+@SuppressWarnings("unused")
 public class CategoryDA extends WHConnection{
 	
 	public Vector<Category> getAllCategories() {

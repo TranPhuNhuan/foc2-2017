@@ -1,4 +1,5 @@
 package gui;
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -27,21 +28,21 @@ import dataobject.Category;
 import dataobject.UnitOfMeasure;
 
 @SuppressWarnings("unused")
-public class AddCategory extends JFrame implements ActionListener {
+public class AddBrand extends JFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtCategoryname;
+	private JTextField txtBrandname;
 	private JTextField txtDescription;
-	
+
 	private ProductDA productDA;
 	private CategoryDA catDA;
 	private BrandDA brandDA;
 	private UnitOfMeasureDA unitDA;
-	
+
 	private JButton btnAdd;
 	private JButton btnCancel;
 
@@ -52,9 +53,9 @@ public class AddCategory extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddCategory frame = new AddCategory();
+					AddBrand frame = new AddBrand();
 					frame.setVisible(true);
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,84 +66,84 @@ public class AddCategory extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public AddCategory() {
+	public AddBrand() {
 		productDA = new ProductDA();
 		catDA = new CategoryDA();
 		brandDA = new BrandDA();
 		unitDA = new UnitOfMeasureDA();
-		
+
 		initGUI();
 	}
 
 	private void initGUI() {
 		setResizable(false);
-		setTitle("Add Category - Phu Nhuan");
+		setTitle("Add Brand - Phu Nhuan");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 339, 346);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JLabel lblCategoryname = new JLabel("Category Name");
-		lblCategoryname.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCategoryname.setBounds(21, 99, 103, 23);
-		contentPane.add(lblCategoryname);
-		
-		txtCategoryname = new JTextField();
-		txtCategoryname.setBounds(134, 102, 173, 20);
-		contentPane.add(txtCategoryname);
-		txtCategoryname.setColumns(10);
-		
+
+		JLabel lblBrandname = new JLabel("Brand Name");
+		lblBrandname.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblBrandname.setBounds(21, 99, 103, 23);
+		contentPane.add(lblBrandname);
+
+		txtBrandname = new JTextField();
+		txtBrandname.setBounds(134, 102, 173, 20);
+		contentPane.add(txtBrandname);
+		txtBrandname.setColumns(10);
+
 		JLabel lbDescription = new JLabel("Description");
 		lbDescription.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lbDescription.setBounds(22, 166, 74, 14);
 		contentPane.add(lbDescription);
-		
+
 		txtDescription = new JTextField();
 		txtDescription.setColumns(10);
 		txtDescription.setBounds(134, 163, 173, 20);
 		contentPane.add(txtDescription);
-		
-		JLabel lblAddCategory = new JLabel("Add Category");
-		lblAddCategory.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAddCategory.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblAddCategory.setBounds(60, 30, 229, 33);
-		contentPane.add(lblAddCategory);
-		
+
+		JLabel lblAddBrand = new JLabel("Add Brand");
+		lblAddBrand.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAddBrand.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblAddBrand.setBounds(60, 30, 229, 33);
+		contentPane.add(lblAddBrand);
+
 		btnAdd = new JButton("Add");
 		btnAdd.setBounds(60, 243, 89, 23);
 		contentPane.add(btnAdd);
 		btnAdd.addActionListener(this);
-		
+
 		btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(179, 243, 89, 23);
 		contentPane.add(btnCancel);
 		btnCancel.addActionListener(this);
-		//Vector<Category> catList = catDA.getAllCategories();
-		//Vector<UnitOfMeasure>unitList = unitDA.getUnitOfMeasure();
-		//Vector<Brand> brandList = brandDA.getBrands();
+		// Vector<Category> catList = catDA.getAllCategories();
+		// Vector<UnitOfMeasure>unitList = unitDA.getUnitOfMeasure();
+		// Vector<Brand> brandList = brandDA.getBrands();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == btnAdd){
-			addCategory();
-			catDA.getAllCategories();
-			JOptionPane.showMessageDialog(this,"add completed");
-			
-			CategoryList frame1 = new CategoryList();
+		if (e.getSource() == btnAdd) {
+			addBrand();
+			brandDA.getBrands();
+			JOptionPane.showMessageDialog(this, "add completed");
+
+			BrandList frame1 = new BrandList();
 			frame1.setVisible(true);
-			
-		}else if(e.getSource() == btnCancel){
-			AddCategory.this.dispose();
+
+		} else if (e.getSource() == btnCancel) {
+			AddBrand.this.dispose();
 		}
-		
+
 	}
 
-	private void addCategory() {
-		String categoryName = txtCategoryname.getText();
-		String categoryDescription = txtDescription.getText();
-		catDA.insert(categoryName, categoryDescription);
+	private void addBrand() {
+		String brandName = txtBrandname.getText();
+		String brandDescription = txtDescription.getText();
+		brandDA.insert(brandName, brandDescription);
 	}
 }

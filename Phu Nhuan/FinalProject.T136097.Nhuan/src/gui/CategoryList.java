@@ -24,6 +24,7 @@ import dataobject.Category;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
+@SuppressWarnings({ "unused", "serial" })
 public class CategoryList extends JFrame implements ActionListener{
 
 	private JPanel contentPane;

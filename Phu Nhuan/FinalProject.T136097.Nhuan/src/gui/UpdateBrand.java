@@ -27,25 +27,25 @@ import dataobject.Product;
 import dataobject.UnitOfMeasure;
 
 @SuppressWarnings("unused")
-public class UpdateCategory extends JFrame implements ActionListener {
+public class UpdateBrand extends JFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtCategoryName;
+	private JTextField txtBrandname;
 	private JTextField txtDescription;
 	
 	//private ProductDA productDA;
-	private CategoryDA catDA;
+	private BrandDA brandDA;
 	//private BrandDA brandDA;
 	//private UnitOfMeasureDA unitDA;
 	
 	private JButton btnUpdate;
 	private JButton btnCancel;
 
-	public int categoryID = 1;
+	public int brandID = 1;
 	/**
 	 * Launch the application.
 	 */
@@ -53,7 +53,7 @@ public class UpdateCategory extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UpdateCategory frame = new UpdateCategory(1);
+					UpdateBrand frame = new UpdateBrand(1);
 					
 					frame.setVisible(true);
 					
@@ -68,26 +68,26 @@ public class UpdateCategory extends JFrame implements ActionListener {
 	 * Create the frame.
 	 * @param selectedProductID 
 	 */
-	public UpdateCategory(int cid) {
-		categoryID = cid;
+	public UpdateBrand(int bid) {
+		brandID = bid;
 		//productDA = new ProductDA();
-		catDA = new CategoryDA();
+		brandDA = new BrandDA();
 		//brandDA = new BrandDA();
 		//unitDA = new UnitOfMeasureDA();
 		
 		initGUI();
 		
 		
-		Category c = catDA.getCategory(categoryID);
-		txtCategoryName.setText(c.getCategoryName());
-		txtDescription.setText(c.getCategoryDescription());
+		Brand b = brandDA.getBrand(brandID);
+		txtBrandname.setText(b.getBrandName());
+		txtDescription.setText(b.getBrandDescription());
 		
 		
 	}
 
 	private void initGUI() {
 		setResizable(false);
-		setTitle("Update Category - Nhuan");
+		setTitle("Update Brand - Nhuan");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 339, 346);
 		contentPane = new JPanel();
@@ -95,15 +95,15 @@ public class UpdateCategory extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblCategoryName = new JLabel("Category Name");
-		lblCategoryName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCategoryName.setBounds(26, 105, 102, 20);
-		contentPane.add(lblCategoryName);
+		JLabel lblBrandName = new JLabel("Brand Name");
+		lblBrandName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblBrandName.setBounds(26, 105, 102, 20);
+		contentPane.add(lblBrandName);
 		
-		txtCategoryName = new JTextField();
-		txtCategoryName.setBounds(138, 107, 173, 20);
-		contentPane.add(txtCategoryName);
-		txtCategoryName.setColumns(10);
+		txtBrandname = new JTextField();
+		txtBrandname.setBounds(138, 107, 173, 20);
+		contentPane.add(txtBrandname);
+		txtBrandname.setColumns(10);
 		
 		JLabel lbDescription = new JLabel("Description");
 		lbDescription.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -115,11 +115,11 @@ public class UpdateCategory extends JFrame implements ActionListener {
 		txtDescription.setBounds(138, 170, 173, 20);
 		contentPane.add(txtDescription);
 		
-		JLabel lblUpdateCategory = new JLabel("Update Category");
-		lblUpdateCategory.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUpdateCategory.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblUpdateCategory.setBounds(56, 27, 230, 30);
-		contentPane.add(lblUpdateCategory);
+		JLabel lblUpdateBrand = new JLabel("Update Brand");
+		lblUpdateBrand.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUpdateBrand.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblUpdateBrand.setBounds(56, 27, 230, 30);
+		contentPane.add(lblUpdateBrand);
 		
 		btnUpdate = new JButton("Update");
 		btnUpdate.setBounds(56, 241, 89, 23);
@@ -139,21 +139,21 @@ public class UpdateCategory extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnUpdate){
 			updateCategory();
-			catDA.getAllCategories();
+			brandDA.getBrands();
 			JOptionPane.showMessageDialog(this,"updated completed");
 			
-			CategoryList frame1 = new CategoryList();
+			BrandList frame1 = new BrandList();
 			frame1.setVisible(true);
 		}else if(e.getSource() == btnCancel){
-			UpdateCategory.this.dispose();
+			UpdateBrand.this.dispose();
 		}
 		
 	}
 
 	private void updateCategory() {
-		String categoryName = txtCategoryName.getText();
-		String categoryDescription = txtDescription.getText();
+		String brandName = txtBrandname.getText();
+		String brandDescription = txtDescription.getText();
 		
-		catDA.update(categoryName, categoryDescription, categoryID);
+		brandDA.update(brandName, brandDescription, brandID);
 	}
 }

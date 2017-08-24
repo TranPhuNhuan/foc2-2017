@@ -10,6 +10,7 @@ import java.util.Vector;
 import dataobject.Brand;
 import dataobject.UnitOfMeasure;
 
+@SuppressWarnings("unused")
 public class UnitOfMeasureDA extends WHConnection {
 	
 	public Vector<UnitOfMeasure> getUnitOfMeasure() {
